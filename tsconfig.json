@@ -18,6 +18,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "sourceMap": true,
+    "resolveJsonModule": true,
     "outDir": "./dist",
     "emitDecoratorMetadata": true,
     "types": [
@@ -29,7 +30,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/main.cli.js"  ],
   "exclude": [
     "node_modules",
     "**/*.test.ts"
