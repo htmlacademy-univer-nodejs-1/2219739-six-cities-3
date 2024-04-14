@@ -1,0 +1,62 @@
+{
+    "mockOffers": {
+      "titles": [
+        "Уютная квартира",
+        "Уютный домик",
+        "Современная студия",
+        "Просторный дом",
+        "Уютный апартамент"
+      ],
+      "descriptions": [
+        "Прекрасная квартира в центре Парижа",
+        "Уединенный дом с видом на Амстердам",
+        "Прекрасная студия с видом на Эйфелеву башню",
+        "Прекрасный дом с садом в тихом районе",
+        "Милый апартамент в самом сердце Рима"
+      ],
+      "previewImages": [
+        "1.jpg",
+        "2.jpg",
+        "studio1.jpg",
+        "house3.jpg",
+        "apartment3.jpg"
+      ],
+      "houseImages": [
+        ["apartment1.jpg", "apartment2.jpg"],
+        ["house1.jpg", "house2.jpg"],
+        ["studio1.jpg", "studio2.jpg"],
+        ["house3.jpg", "house4.jpg"],
+        ["apartment3.jpg", "apartment4.jpg"]
+      ],
+      "commentsCount": [30, 20, 0, 0, 0],
+      "userNames": [
+        "ivan_ivanov",
+        "anna_anna",
+        "maria_maria",
+        "peter_parker",
+        "lisa_lisa"
+      ],
+      "avatars": [
+        "avatar1.png",
+        "avatar2.png",
+        "avatar3.png",
+        "avatar4.png",
+        "avatar5.png"
+      ],
+      "emails": [
+        "ivan@example.com",
+        "anna@example.com",
+        "maria@example.com",
+        "peter@example.com",
+        "lisa@example.com"
+      ],
+      "passwords": [
+        "пароль123",
+        "пароль456",
+        "password123",
+        "spiderman123",
+        "password456"
+      ]
+    }
+}
+  

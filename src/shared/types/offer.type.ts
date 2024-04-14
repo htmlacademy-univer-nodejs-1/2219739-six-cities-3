@@ -17,7 +17,6 @@ export type Offer = {
     guests: number;
     rentCost: number;
     amenities: Amenity[];
-    commentsCount: number;
     city: City;
     author: User;
 }
