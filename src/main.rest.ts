@@ -1,18 +1,22 @@
 import 'reflect-metadata';
-import { Logger, ConsoleLogger } from './shared/limbs/logger/index.js';
-import { Application } from './rest/index.js';
-import { Config, RestConfig, ConfigSchema } from './shared/limbs/config/index.js';
-import { Container } from 'inversify';
-import { Component } from './shared/types/index.js';
+import {RestApplication} from './rest/index.js';
+import {Container} from 'inversify';
+import {Component} from './shared/types/index.js';
+import {createRestApplicationContainer} from './rest/rest.container.js';
+import {createUserContainer} from './shared/modules/user/user.container.js';
+import {createOfferContainer} from './shared/modules/offer/index.js';
+import {createCommentContainer} from './shared/modules/comment/index.js';
 
-async function initApp() {
-  const container = new Container();
-  container.bind<Application>(Component.Application).to(Application).inSingletonScope();
-  container.bind<Logger>(Component.Logger).to(ConsoleLogger).inSingletonScope();
-  container.bind<Config<ConfigSchema>>(Component.Config).to(RestConfig).inSingletonScope();
+async function bootstrap() {
+  const appContainer = Container.merge(
+    createRestApplicationContainer(),
+    createUserContainer(),
+    createOfferContainer(),
+    createCommentContainer(),
+  );
 
-  const application = container.get<Application>(Component.Application);
+  const application = appContainer.get<RestApplication>(Component.RestApplication);
   await application.init();
 }
 
-initApp();
+bootstrap();
