@@ -1,3 +1,6 @@
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+
 export function getRandomNumber(min: number, max: number) : number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -17,4 +20,9 @@ export function getRandomDate(): string {
   const startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 3, currentDate.getDate());
   const endDate = currentDate;
   return new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime())).toISOString();
+}
+
+export function getCurrentDirectory(): string {
+  const filepath = fileURLToPath(import.meta.url);
+  return dirname(filepath);
 }
