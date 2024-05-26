@@ -4,7 +4,7 @@ import {DocumentType, types} from '@typegoose/typegoose';
 import {UserEntity} from './user.entity.js';
 import {inject, injectable} from 'inversify';
 import {Component} from '../../types/index.js';
-import {Logger} from '../../limbs/logger/index.js';
+import {Logger} from '../../libs/logger/index.js';
 
 @injectable()
 export class DefaultUserService implements UserService {

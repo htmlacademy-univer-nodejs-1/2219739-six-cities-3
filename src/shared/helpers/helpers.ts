@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
+import {ClassConstructor, plainToInstance} from 'class-transformer';
 
 export function getRandomNumber(min: number, max: number) : number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -25,4 +26,18 @@ export function getRandomDate(): string {
 export function getCurrentDirectory(): string {
   const filepath = fileURLToPath(import.meta.url);
   return dirname(filepath);
+}
+
+export function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : '';
+}
+
+export function fillDTO<T, V>(someDto: ClassConstructor<T>, plainObject: V) {
+  return plainToInstance(someDto, plainObject, {excludeExtraneousValues: true});
+}
+
+export function createErrorObject(message: string) {
+  return {
+    error: message
+  };
 }

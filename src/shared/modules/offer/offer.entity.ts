@@ -1,5 +1,5 @@
 import {defaultClasses, getModelForClass, modelOptions, prop, Ref} from '@typegoose/typegoose';
-import {Amenity, City, OfferType} from '../../types/index.js';
+import {Amenity, City, HouseType} from '../../types/index.js';
 import {UserEntity} from '../user/index.js';
 
 export interface OfferEntity extends defaultClasses.Base {}
@@ -28,12 +28,11 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     required: true,
     type: () => Date,
   })
-  public postDate: Date;
+  public publicationDate: Date;
 
   @prop({
     required: true,
     type: () => String,
-    enum: City
   })
   public city: City;
 
@@ -48,7 +47,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     default: [],
     type: () => Array<string>,
   })
-  public photos: string[];
+  public houseImages: string[];
 
   @prop({
     required: true,
@@ -71,27 +70,27 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     required: true,
     type: () => String,
-    enum: OfferType
+    enum: HouseType
   })
-  public type: OfferType;
+  public houseType: HouseType;
 
   @prop({
     required: true,
     type: () => Number,
   })
-  public roomCount: number;
+  public rooms: number;
 
   @prop({
     required: true,
     type: () => Number,
   })
-  public guestCount: number;
+  public guests: number;
 
   @prop({
     required: true,
     type: () => Number,
   })
-  public price: number;
+  public rentCost: number;
 
   @prop({
     required: true,
@@ -102,27 +101,14 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     required: true,
     ref: UserEntity,
-    type: () => String
   })
   public userId: Ref<UserEntity>;
 
-  @prop({
-    type: () => Number,
-    default: 0
-  })
-  public commentCount: number;
-
-  @prop({
-    required: true,
-    type: () => Number,
-  })
-  public latitude: number;
-
-  @prop({
-    required: true,
-    type: () => Number,
-  })
-  public longitude: number;
+  //@prop({
+  //  type: () => Number,
+  //  default: 0
+  //})
+  //public commentCount: number;
 }
 
 export const OfferModel = getModelForClass(OfferEntity);

@@ -1,17 +1,19 @@
 import {Container} from 'inversify';
-import {RestApplication} from './rest.application.js';
-import {DatabaseClient, MongoDatabaseClient} from '../shared/limbs/database-client/index.js';
-import {Logger, PinoLogger} from '../shared/limbs/logger/index.js';
+import {Application} from './rest.application.js';
+import {DatabaseClient, MongoDatabaseClient} from '../shared/libs/database-client/index.js';
+import {Logger, ConsoleLogger} from '../shared/libs/logger/index.js';
 import {Component} from '../shared/types/index.js';
-import {Config, RestConfig, RestSchema} from '../shared/limbs/config/index.js';
+import {Config, RestConfig, ConfigSchema} from '../shared/libs/config/index.js';
+import {AppExceptionFilter, ExceptionFilter} from '../shared/libs/rest/index.js';
 
-export function createRestApplicationContainer() {
+export function createApplicationContainer() {
   const restApplicationContainer = new Container();
 
-  restApplicationContainer.bind<RestApplication>(Component.RestApplication).to(RestApplication).inSingletonScope();
-  restApplicationContainer.bind<Logger>(Component.Logger).to(PinoLogger).inSingletonScope();
-  restApplicationContainer.bind<Config<RestSchema>>(Component.Config).to(RestConfig).inSingletonScope();
+  restApplicationContainer.bind<Application>(Component.Application).to(Application).inSingletonScope();
+  restApplicationContainer.bind<Logger>(Component.Logger).to(ConsoleLogger).inSingletonScope();
+  restApplicationContainer.bind<Config<ConfigSchema>>(Component.Config).to(RestConfig).inSingletonScope();
   restApplicationContainer.bind<DatabaseClient>(Component.DatabaseClient).to(MongoDatabaseClient).inSingletonScope();
+  restApplicationContainer.bind<ExceptionFilter>(Component.ExceptionFilter).to(AppExceptionFilter).inSingletonScope();
 
   return restApplicationContainer;
 }

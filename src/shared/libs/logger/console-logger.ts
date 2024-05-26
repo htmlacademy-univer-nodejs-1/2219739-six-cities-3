@@ -33,18 +33,22 @@ export class ConsoleLogger implements Logger {
   }
 
   info(message: string, ...args: unknown[]): void {
+    this.logger.info({ msg: message, args });
     console.log(chalk.blue(`INFO: ${message}`), ...args);
   }
 
   warn(message: string, ...args: unknown[]): void {
+    this.logger.warn({ msg: message, args });
     console.log(chalk.yellow(`WARN: ${message}`), ...args);
   }
 
   error(message: string, error: Error, ...args: unknown[]): void {
+    this.logger.error({ msg: message, error, args });
     console.log(chalk.red(`ERROR: ${message}`), error, ...args);
   }
 
   debug(message: string, ...args: unknown[]): void {
+    this.logger.debug({ msg: message, args });
     console.log(chalk.gray(`DEBUG: ${message}`), ...args);
   }
 }

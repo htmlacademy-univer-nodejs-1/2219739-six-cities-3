@@ -4,6 +4,7 @@ import {createSHA256} from '../../helpers/index.js';
 
 export interface UserEntity extends defaultClasses.Base {}
 
+
 @modelOptions({
   schemaOptions: {
     collection: 'users'
@@ -15,7 +16,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
     default: '',
     type: () => String
   })
-  public name: string;
+  public userName: string;
 
   @prop({
     unique: true,
@@ -29,14 +30,14 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
     default: '',
     type: () => String
   })
-  public avatar: string;
+  public avatar?: string;
 
   @prop({
     required: true,
     type: () => String,
     enum: UserType
   })
-  public type: UserType;
+  public userType: UserType;
 
   @prop({
     required: true,
@@ -48,10 +49,10 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   constructor(userData: User) {
     super();
 
-    this.name = userData.name;
+    this.userName = userData.userName;
     this.email = userData.email;
     this.avatar = userData.avatar;
-    this.type = userData.type;
+    this.userType = userData.userType;
   }
 
   public setPassword(password: string, salt: string) {
