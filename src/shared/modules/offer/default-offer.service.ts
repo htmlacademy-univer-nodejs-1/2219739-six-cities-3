@@ -1,7 +1,7 @@
 import {OfferService} from './offer-service.interface.js';
 import {inject, injectable} from 'inversify';
 import {Component, SortType} from '../../types/index.js';
-import {Logger} from '../../limbs/logger/index.js';
+import {Logger} from '../../libs/logger/index.js';
 import {DocumentType, types} from '@typegoose/typegoose';
 import {OfferEntity} from './offer.entity.js';
 import {CreateOfferDto} from './dto/create-offer.dto.js';

@@ -1,8 +1,8 @@
 import { Command } from './command.interface';
 import { MockServerData } from '../../shared/types';
 import axios from 'axios';
-import { generateOffer } from '../../shared/limbs/mock-generator';
-import { TSVFileWriter } from '../../shared/limbs/file-writer';
+import { generateOffer } from '../../shared/libs/mock-generator';
+import { TSVFileWriter } from '../../shared/libs/file-writer';
 
 export class GenerateCommand implements Command {
   private initialData: MockServerData;

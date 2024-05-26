@@ -43,30 +43,36 @@ export class ImportCommand implements Command {
 
   private async saveOffer(offer: Offer) {
     const user = await this.userService.findOrCreate({
-      ...offer.user,
+      userName: offer.author.userName,
+      email: offer.author.email,
+      avatar: offer.author.avatar || '',
+      userType: offer.author.userType,
       password: DEFAULT_USER_PASSWORD
     }, this.salt);
 
     await this.offerService.create({
       title: offer.title,
       description: offer.description,
-      postDate: offer.postDate,
-      city: offer.city,
+      publicationDate: offer.publicationDate,
+      city: {
+        cityName: offer.city.cityName,
+        latitude: offer.city.latitude,
+        longitude: offer.city.longitude,
+      },
       previewImage: offer.previewImage,
-      photos: [...offer.photos],
+      houseImages: [...offer.houseImages],
       premium: offer.premium,
       favorite: offer.favorite,
       rating: offer.rating,
-      type: offer.type,
-      roomCount: offer.roomCount,
-      guestCount: offer.guestCount,
-      price: offer.price,
+      houseType: offer.houseType,
+      rooms: offer.rooms,
+      guests: offer.guests,
+      rentCost: offer.rentCost,
       amenities: [...offer.amenities],
-      userId: user.id,
-      latitude: offer.coordinates.latitude,
-      longitude: offer.coordinates.longitude
+      author: user.id,
     });
   }
+
 
   public getName(): string {
     return '--import';

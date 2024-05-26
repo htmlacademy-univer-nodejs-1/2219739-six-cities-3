@@ -20,7 +20,6 @@ export function createOffer(offerData: string): Offer {
     longitude,
     userName,
     email,
-    password,
     userType] = offerData.replace('\n', '').split('\t');
 
   const offer: Offer = {
@@ -47,7 +46,6 @@ export function createOffer(offerData: string): Offer {
     author: {
       userName,
       email,
-      password,
       userType: userType as UserType,
     },
   };
