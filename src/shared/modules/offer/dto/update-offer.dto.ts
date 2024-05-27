@@ -11,7 +11,7 @@ import {
   Min,
   MinLength
 } from 'class-validator';
-import {UpdateOfferValidationMessage} from './update-offer.message';
+import {UpdateOfferValidationMessage} from './update-offer.message.js';
 
 export class UpdateOfferDto {
   @IsOptional()
