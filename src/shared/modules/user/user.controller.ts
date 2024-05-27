@@ -1,4 +1,10 @@
-import {BaseController, HttpError, HttpMethod} from '../../libs/rest/index.js';
+import {
+  BaseController,
+  HttpError,
+  HttpMethod,
+  ValidateDtoMiddleware,
+  ValidateObjectIdMiddleware
+} from '../../libs/rest/index.js';
 import {inject, injectable} from 'inversify';
 import {Component} from '../../types/index.js';
 import {Logger} from '../../libs/logger/index.js';
@@ -10,6 +16,8 @@ import {StatusCodes} from 'http-status-codes';
 import {fillDTO} from '../../helpers/index.js';
 import {UserRdo} from './rdo/user.rdo.js';
 import {LoginUserRequest} from './login-user-request.type.js';
+import {CreateUserDto} from './dto/create-user.dto.js';
+import {LoginUserDto} from './dto/login-user.dto.js';
 
 @injectable()
 export class UserController extends BaseController {
@@ -24,7 +32,8 @@ export class UserController extends BaseController {
     this.addRoute({
       path: '/register',
       method: HttpMethod.Post,
-      handler: this.create
+      handler: this.create,
+      middlewares: [new ValidateDtoMiddleware(CreateUserDto)]
     });
 
     this.addRoute({
@@ -36,13 +45,15 @@ export class UserController extends BaseController {
     this.addRoute({
       path: '/login',
       method: HttpMethod.Get,
-      handler: this.checkAuth
+      handler: this.checkAuth,
+      middlewares: [new ValidateDtoMiddleware(LoginUserDto)]
     });
 
     this.addRoute({
       path: '/:userId/avatar',
       method: HttpMethod.Post,
       handler: this.uploadAvatar,
+      middlewares: [new ValidateObjectIdMiddleware('userId')]
     });
 
     this.addRoute({

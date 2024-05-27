@@ -28,3 +28,10 @@ Content-Type: application/json
   "latitude": 1,
   "longitude": 1
 }
+
+###
+
+## Список комментариев к объявлению
+GET http://localhost:4000/offers/628a27d729c45f2bf9f6806a/comments HTTP/1.1
+
+###
