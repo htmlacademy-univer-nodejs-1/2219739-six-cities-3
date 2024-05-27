@@ -69,7 +69,7 @@ export class ImportCommand implements Command {
       guests: offer.guests,
       rentCost: offer.rentCost,
       amenities: [...offer.amenities],
-      author: user.id,
+      userId: user.id,
     });
   }
 

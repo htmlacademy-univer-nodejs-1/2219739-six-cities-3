@@ -19,7 +19,7 @@ export class CommentEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
-    type: () => String
+    type: () => Number
   })
   public rating: number;
 
