@@ -11,7 +11,7 @@ import {
   Min,
   MinLength
 } from 'class-validator';
-import {CreateOfferValidationMessage} from './create-offer.message';
+import {CreateOfferValidationMessage} from './create-offer.message.js';
 
 export class CreateOfferDto {
 
