@@ -1,6 +1,6 @@
-import {UserType} from '../../../types/index.js';
-import {IsEmail, IsEnum, IsString, Length} from 'class-validator';
-import {CreateUserMessage} from './create-user.message.js';
+import { UserType } from '../../../types/index.js';
+import { IsEmail, IsEnum, IsString, Length } from 'class-validator';
+import { CreateUserMessage } from './create-user.message.js';
 
 export class CreateUserDto {
   @IsString({message: CreateUserMessage.userName.invalidFormat})
@@ -9,9 +9,6 @@ export class CreateUserDto {
 
   @IsEmail({}, {message: CreateUserMessage.email.invalidFormat})
   public email: string;
-
-  @IsString({message: CreateUserMessage.avatar.invalidFormat})
-  public avatar: string;
 
   @IsEnum(UserType, {message: CreateUserMessage.userType.invalidFormat})
   public userType: UserType;

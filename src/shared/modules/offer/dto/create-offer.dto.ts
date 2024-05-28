@@ -1,17 +1,6 @@
-import {Amenity, City, HouseType} from '../../../types/index.js';
-import {
-  IsArray,
-  IsBoolean,
-  IsDateString,
-  IsEnum,
-  IsMongoId,
-  IsNumber,
-  Max,
-  MaxLength,
-  Min,
-  MinLength
-} from 'class-validator';
-import {CreateOfferValidationMessage} from './create-offer.message.js';
+import { Amenity, City, HouseType } from '../../../types/index.js';
+import { IsArray, IsBoolean, IsEnum, IsNumber, IsObject, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { CreateOfferValidationMessage } from './create-offer.message.js';
 
 export class CreateOfferDto {
 
@@ -23,9 +12,7 @@ export class CreateOfferDto {
   @MaxLength(1024, {message: CreateOfferValidationMessage.description.maxLength})
   public description: string;
 
-  @IsDateString({}, {message: CreateOfferValidationMessage.publicationDate.invalidFormat})
-  public publicationDate: Date;
-
+  @IsObject({message: CreateOfferValidationMessage.city.invalid})
   public city: City;
 
   public previewImage: string;
@@ -33,11 +20,11 @@ export class CreateOfferDto {
   @IsArray({message: CreateOfferValidationMessage.houseImages.invalidFormat})
   public houseImages: string[];
 
-  @IsBoolean({message: CreateOfferValidationMessage.premium.invalidFormat})
-  public premium: boolean;
+  @IsBoolean({message: CreateOfferValidationMessage.isPremium.invalidFormat})
+  public isPremium: boolean;
 
-  @IsBoolean({message: CreateOfferValidationMessage.favorite.invalidFormat})
-  public favorite: boolean;
+  @IsBoolean({message: CreateOfferValidationMessage.isFavorite.invalidFormat})
+  public isFavorite: boolean;
 
   @Min(1, {message: CreateOfferValidationMessage.rating.minValue})
   @Max(5, {message: CreateOfferValidationMessage.rating.maxValue})
@@ -52,10 +39,10 @@ export class CreateOfferDto {
   @IsNumber({}, {message: CreateOfferValidationMessage.rooms.invalidFormat})
   public rooms: number;
 
-  @Min(1, {message: CreateOfferValidationMessage.guests.minValue})
-  @Max(10, {message: CreateOfferValidationMessage.guests.maxValue})
-  @IsNumber({}, {message: CreateOfferValidationMessage.guests.invalidFormat})
-  public guests: number;
+  @Min(1, {message: CreateOfferValidationMessage.maxGuests.minValue})
+  @Max(10, {message: CreateOfferValidationMessage.maxGuests.maxValue})
+  @IsNumber({}, {message: CreateOfferValidationMessage.maxGuests.invalidFormat})
+  public maxGuests: number;
 
   @Min(100, {message: CreateOfferValidationMessage.rentCost.minValue})
   @Max(1000000, {message: CreateOfferValidationMessage.rentCost.maxValue})
@@ -66,6 +53,5 @@ export class CreateOfferDto {
   @IsEnum(Amenity, {each: true, message: CreateOfferValidationMessage.amenities.invalidAmenityFormat})
   public amenities: Amenity[];
 
-  @IsMongoId({message: CreateOfferValidationMessage.userId.invalidId})
-  public userId: string;
+  public host: string;
 }

@@ -1,5 +1,5 @@
-import {BaseUserException} from './base-user.exception.js';
-import {StatusCodes} from 'http-status-codes';
+import { BaseUserException } from './base-user.exception.js';
+import { StatusCodes } from 'http-status-codes';
 
 export class UserNotFoundException extends BaseUserException {
   constructor() {

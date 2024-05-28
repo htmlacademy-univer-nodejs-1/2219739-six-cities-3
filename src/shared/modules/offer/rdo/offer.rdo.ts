@@ -1,5 +1,6 @@
-import {Expose, Type} from 'class-transformer';
-import {UserRdo} from '../../user/rdo/user.rdo.js';
+import { Expose, Type } from 'class-transformer';
+import { UserRdo } from '../../user/rdo/user.rdo.js';
+import { City } from '../../../types/index.js';
 
 export class OfferRdo {
   @Expose()
@@ -12,51 +13,45 @@ export class OfferRdo {
   public description: string;
 
   @Expose()
-  public postDate: string;
+  public publicationDate: string;
 
   @Expose()
-  public city: string;
+  public city: City;
 
   @Expose()
   public previewImage: string;
 
   @Expose()
-  public photos: string[];
+  public houseImages: string[];
 
   @Expose()
-  public premium: boolean;
+  public isPremium: boolean;
 
   @Expose()
-  public favorite: boolean;
+  public isFavorite: boolean;
 
   @Expose()
   public rating: number;
 
   @Expose()
-  public type: string;
+  public houseType: string;
 
   @Expose()
-  public roomCount: number;
+  public rooms: number;
 
   @Expose()
-  public guestCount: number;
+  public maxGuests: number;
 
   @Expose()
-  public price: number;
+  public rentCost: number;
 
   @Expose()
   public amenities: string[];
 
-  @Expose({ name: 'userId'})
+  @Expose({ name: 'host'})
   @Type(() => UserRdo)
-  public user: UserRdo;
+  public host: UserRdo;
 
   @Expose()
   public commentCount: number;
-
-  @Expose()
-  public latitude: number;
-
-  @Expose()
-  public longitude: number;
 }

@@ -1,6 +1,6 @@
-import {User, UserType} from '../../types/index.js';
-import {defaultClasses, getModelForClass, modelOptions, prop} from '@typegoose/typegoose';
-import {createSHA256} from '../../helpers/index.js';
+import { User, UserType } from '../../types/index.js';
+import { defaultClasses, getModelForClass, modelOptions, prop } from '@typegoose/typegoose';
+import { createSHA256 } from '../../helpers/index.js';
 
 export interface UserEntity extends defaultClasses.Base {}
 
@@ -27,10 +27,9 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
 
   @prop({
     required: false,
-    default: '',
     type: () => String
   })
-  public avatar?: string;
+  public avatarUrl?: string;
 
   @prop({
     required: true,
@@ -51,7 +50,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
 
     this.userName = userData.userName;
     this.email = userData.email;
-    this.avatar = userData.avatar;
+    this.avatarUrl = userData.avatarUrl;
     this.userType = userData.userType;
   }
 

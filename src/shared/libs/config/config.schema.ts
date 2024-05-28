@@ -13,61 +13,76 @@ export type ConfigSchema = {
   DB_NAME: string;
   UPLOAD_DIRECTORY: string;
   JWT_SECRET: string;
+  HOST: string;
+  STATIC_DIRECTORY: string;
 }
 
 export const configRestSchema = convict<ConfigSchema>({
   PORT: {
-    doc: 'Port for incoming connection',
+    doc: 'Порт для входящего соединения',
     format: 'port',
     env: 'PORT',
     default: 3000
   },
   SALT: {
-    doc: 'Salt for password hash',
+    doc: 'Соль для хеширования пароля',
     format: String,
     env: 'SALT',
     default: null
   },
   DB_HOST: {
-    doc: 'IP address of the database server (MongoDB)',
+    doc: 'IP-адрес сервера базы данных (MongoDB)',
     format: 'ipaddress',
     env: 'DB_HOST',
     default: '127.0.0.1'
   },
   DB_USER: {
-    doc: 'Username to connect to the database',
+    doc: 'Имя пользователя для подключения к базе данных',
     format: String,
     env: 'DB_USER',
     default: null
   },
   DB_PASSWORD: {
-    doc: 'Password to connect to the database',
+    doc: 'Пароль для подключения к базе данных',
     format: String,
     env: 'DB_PASSWORD',
     default: null
   },
   DB_PORT: {
-    doc: 'Port to connect to the database (MongoDB)',
+    doc: 'Порт для подключения к базе данных (MongoDB)',
     format: 'port',
     env: 'DB_PORT',
     default: '27017'
   },
   DB_NAME: {
-    doc: 'Database name (MongoDB)',
+    doc: 'Имя базы данных (MongoDB)',
     format: String,
     env: 'DB_NAME',
     default: 'six-cities'
   },
   UPLOAD_DIRECTORY: {
-    doc: 'Directory for upload files',
+    doc: 'Каталог для загрузки файлов',
     format: String,
     env: 'UPLOAD_DIRECTORY',
     default: null
   },
   JWT_SECRET: {
-    doc: 'Secret for sign JWT',
+    doc: 'JWT секрет',
     format: String,
     env: 'JWT_SECRET',
     default: null
   },
+  HOST: {
+    doc: 'Хост, на котором запущено приложение',
+    format: String,
+    env: 'HOST',
+    default: 'localhost'
+  },
+  STATIC_DIRECTORY: {
+    doc: 'Путь к каталогу со статическими ресурсами',
+    format: String,
+    env: 'STATIC_DIRECTORY_PATH',
+    default: 'static'
+  },
 });
+

@@ -1,20 +1,20 @@
-import {Amenity, City , HouseType, UserType, MockServerData} from '../../types/index.js';
-import {getRandomNumber, getRandomElement, getRandomElements, getRandomDate} from '../../helpers/index.js';
+import { Amenity, City, CityName, HouseType, UserType, MockServerData } from '../../types/index.js';
+import { getRandomNumber, getRandomElement, getRandomElements, getRandomDate } from '../../helpers/index.js';
 
 const CITIES: City[] = [
-  { cityName: 'Paris', latitude: 48.85661, longitude: 2.351499 },
-  { cityName: 'Cologne', latitude: 50.938361, longitude: 6.959974 },
-  { cityName: 'Brussels', latitude: 50.846557, longitude: 4.351697 },
-  { cityName: 'Amsterdam', latitude: 52.370216, longitude: 4.895168 },
-  { cityName: 'Hamburg', latitude: 53.550341, longitude: 10.000654 },
-  { cityName: 'Dusseldorf', latitude: 51.225402, longitude: 6.776314 }
+  { cityName: CityName.Paris, latitude: 48.85661, longitude: 2.351499 },
+  { cityName: CityName.Cologne, latitude: 50.938361, longitude: 6.959974 },
+  { cityName: CityName.Brussels, latitude: 50.846557, longitude: 4.351697 },
+  { cityName: CityName.Amsterdam, latitude: 52.370216, longitude: 4.895168 },
+  { cityName: CityName.Hamburg, latitude: 53.550341, longitude: 10.000654 },
+  { cityName: CityName.Dusseldorf, latitude: 51.225402, longitude: 6.776314 }
 ];
 
 const MIN_RATING = 1;
 const MAX_RATING = 5;
 
 const MIN_ROOMS = 1;
-const MAX_ROOM = 8;
+const MAX_ROOMS = 8;
 
 const MIN_GUESTS = 1;
 const MAX_GUESTS = 10;
@@ -30,8 +30,8 @@ export function generateOffer(mockData: MockServerData): string {
   const city = getRandomElement(CITIES);
   const previewImage = getRandomElement<string>(mockData.previewImages);
   const houseImages = getRandomElements<string[]>(mockData.houseImages).join(';');
-  const premium = getRandomElement<string>(['true', 'false']);
-  const favorite = getRandomElement<string>(['true', 'false']);
+  const isPremium = getRandomElement<string>(['true', 'false']);
+  const isFavorite = getRandomElement<string>(['true', 'false']);
   const rating = getRandomNumber(MIN_RATING, MAX_RATING).toString();
   const houseType = getRandomElement([
     HouseType.Apartment,
@@ -39,8 +39,8 @@ export function generateOffer(mockData: MockServerData): string {
     HouseType.House,
     HouseType.Room
   ]);
-  const rooms = getRandomNumber(MIN_ROOMS, MAX_ROOM).toString();
-  const guests = getRandomNumber(MIN_GUESTS, MAX_GUESTS).toString();
+  const rooms = getRandomNumber(MIN_ROOMS, MAX_ROOMS).toString();
+  const maxGuests = getRandomNumber(MIN_GUESTS, MAX_GUESTS).toString();
   const rentCost = getRandomNumber(MIN_RENT_COST, MAX_RENT_COST).toString();
   const amenities = getRandomElements([
     Amenity.AirConditioning,
@@ -53,7 +53,7 @@ export function generateOffer(mockData: MockServerData): string {
   ]).join(';');
   const userName = getRandomElement<string>(mockData.userNames);
   const email = getRandomElement<string>(mockData.emails);
-  const avatar = getRandomElement<string>(mockData.avatars);
+  const avatarUrl = getRandomElement<string>(mockData.avatars);
   const password = getRandomElement<string>(mockData.passwords);
   const userType = getRandomElement([
     UserType.Ordinary,
@@ -68,19 +68,19 @@ export function generateOffer(mockData: MockServerData): string {
     publicationDate,
     previewImage,
     houseImages,
-    premium,
-    favorite,
+    isPremium,
+    isFavorite,
     rating,
     houseType,
     rooms,
-    guests,
+    maxGuests,
     rentCost,
     amenities,
     cityName,
     latitude,
     longitude,
     userName,
-    avatar,
+    avatarUrl,
     email,
     password,
     userType

@@ -9,14 +9,14 @@ export type Offer = {
     publicationDate: Date;
     previewImage: string;
     houseImages: string[];
-    premium: boolean;
-    favorite: boolean;
+    isPremium: boolean;
+    isFavorite: boolean;
     rating: number;
     houseType: HouseType;
     rooms: number;
-    guests: number;
+    maxGuests: number;
     rentCost: number;
     amenities: Amenity[];
     city: City;
-    author: User;
+    host: User;
 }
