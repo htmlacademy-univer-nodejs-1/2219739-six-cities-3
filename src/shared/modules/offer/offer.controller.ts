@@ -1,20 +1,15 @@
-import {
-  BaseController, DocumentExistsMiddleware,
-  HttpMethod,
-  ValidateDtoMiddleware,
-  ValidateObjectIdMiddleware
-} from '../../libs/rest/index.js';
-import {inject, injectable} from 'inversify';
-import {Component} from '../../types/index.js';
-import {Logger} from '../../libs/logger/index.js';
-import {Request, Response} from 'express';
-import {OfferService} from './offer-service.interface.js';
-import {fillDTO} from '../../helpers/index.js';
-import {OfferRdo} from './rdo/offer.rdo.js';
-import {CreateOfferDto} from './dto/create-offer.dto.js';
-import {UpdateOfferDto} from './dto/update-offer.dto.js';
-import {CommentRdo, CommentService} from '../comment/index.js';
-import {PrivateRouteMiddleware} from '../../libs/rest/middleware/private-route.middleware.js';
+import { BaseController, DocumentExistsMiddleware, HttpMethod, ValidateDtoMiddleware, ValidateObjectIdMiddleware } from '../../libs/rest/index.js';
+import { inject, injectable } from 'inversify';
+import { Component } from '../../types/index.js';
+import { Logger } from '../../libs/logger/index.js';
+import { Request, Response } from 'express';
+import { OfferService } from './offer-service.interface.js';
+import { fillDTO } from '../../helpers/index.js';
+import { OfferRdo } from './rdo/offer.rdo.js';
+import { CreateOfferDto } from './dto/create-offer.dto.js';
+import { UpdateOfferDto } from './dto/update-offer.dto.js';
+import { CommentRdo, CommentService } from '../comment/index.js';
+import { PrivateRouteMiddleware } from '../../libs/rest/middleware/private-route.middleware.js';
 
 @injectable()
 export class OfferController extends BaseController {

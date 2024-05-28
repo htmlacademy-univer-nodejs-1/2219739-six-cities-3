@@ -1,17 +1,6 @@
-import {Amenity, City, HouseType} from '../../../types/index.js';
-import {
-  IsArray,
-  IsBoolean,
-  IsDateString,
-  IsEnum,
-  IsNumber,
-  IsOptional,
-  Max,
-  MaxLength,
-  Min,
-  MinLength
-} from 'class-validator';
-import {UpdateOfferValidationMessage} from './update-offer.message.js';
+import { Amenity, City, HouseType } from '../../../types/index.js';
+import { IsArray, IsBoolean, IsDateString, IsEnum, IsNumber, IsOptional, IsObject, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { UpdateOfferValidationMessage } from './update-offer.message.js';
 
 export class UpdateOfferDto {
   @IsOptional()
@@ -28,7 +17,7 @@ export class UpdateOfferDto {
   @IsDateString({}, {message: UpdateOfferValidationMessage.publicationDate.invalidFormat})
   public publicationDate?: Date;
 
-  @IsOptional()
+  @IsObject({message: UpdateOfferValidationMessage.city.invalid})
   public city?: City;
 
   @IsOptional()
@@ -39,12 +28,12 @@ export class UpdateOfferDto {
   public houseImages?: string[];
 
   @IsOptional()
-  @IsBoolean({message: UpdateOfferValidationMessage.premium.invalidFormat})
-  public premium?: boolean;
+  @IsBoolean({message: UpdateOfferValidationMessage.isPremium.invalidFormat})
+  public isPremium?: boolean;
 
   @IsOptional()
-  @IsBoolean({message: UpdateOfferValidationMessage.favorite.invalidFormat})
-  public favorite?: boolean;
+  @IsBoolean({message: UpdateOfferValidationMessage.isFavorite.invalidFormat})
+  public isFavorite?: boolean;
 
   @IsOptional()
   @Min(1, {message: UpdateOfferValidationMessage.rating.minValue})
@@ -63,10 +52,10 @@ export class UpdateOfferDto {
   public rooms?: number;
 
   @IsOptional()
-  @Min(1, {message: UpdateOfferValidationMessage.guests.minValue})
-  @Max(10, {message: UpdateOfferValidationMessage.guests.maxValue})
-  @IsNumber({}, {message: UpdateOfferValidationMessage.guests.invalidFormat})
-  public guests?: number;
+  @Min(1, {message: UpdateOfferValidationMessage.maxGuests.minValue})
+  @Max(10, {message: UpdateOfferValidationMessage.maxGuests.maxValue})
+  @IsNumber({}, {message: UpdateOfferValidationMessage.maxGuests.invalidFormat})
+  public maxGuests?: number;
 
   @IsOptional()
   @Min(100, {message: UpdateOfferValidationMessage.rentCost.minValue})

@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import { resolve } from 'node:path';
 import { getCurrentDirectory } from '../../helpers/index.js';
 import { injectable } from 'inversify';
+import fs from 'node:fs';
 
 @injectable()
 export class ConsoleLogger implements Logger {
@@ -11,14 +12,19 @@ export class ConsoleLogger implements Logger {
 
   constructor() {
     const modulePath = getCurrentDirectory();
-    const logFilePath = 'logs/rest.log';
-    const destination = resolve(modulePath, '../../../', logFilePath);
+    const logFileName = 'rest.log';
+    const logFilePath = resolve(modulePath, '../../../logs', logFileName);
+
+    const logsFolder = resolve(modulePath, '../../../logs');
+    if (!fs.existsSync(logsFolder)) {
+      fs.mkdirSync(logsFolder);
+    }
 
     const fileTransport = transport({
       targets: [
         {
           target: 'pino/file',
-          options: {destination},
+          options: { destination: logFilePath },
           level: 'debug'
         },
         {

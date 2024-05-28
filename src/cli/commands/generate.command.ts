@@ -4,15 +4,15 @@ import axios from 'axios';
 import { generateOffer } from '../../shared/libs/mock-generator';
 import { TSVFileWriter } from '../../shared/libs/file-writer';
 
-export class GenerateCommand implements Command {
-  private initialData: MockServerData;
+export class DataGenerateCommand implements Command {
+  private fetchedData: MockServerData;
 
-  private async loadData(url: string): Promise<void> {
+  private async fetchInitialData(apiEndpoint: string): Promise<void> {
     try {
-      const response = await axios.get<MockServerData>(url);
-      this.initialData = response.data;
+      const response = await axios.get<MockServerData>(apiEndpoint);
+      this.fetchedData = response.data;
     } catch (error: unknown) {
-      throw new Error(`Failed to load data from ${url}: ${error instanceof Error ? error.message : error}`);
+      throw new Error(`Failed to fetch data from ${apiEndpoint}: ${error instanceof Error ? error.message : error}`);
     }
   }
 
@@ -21,16 +21,16 @@ export class GenerateCommand implements Command {
   }
 
   public async execute(...parameters: string[]): Promise<void> {
-    const [offerCountStr, filepath, url] = parameters;
-    const count = parseInt(offerCountStr, 10);
+    const [numOfOffersStr, outputPath, apiEndpoint] = parameters;
+    const numOfOffers = parseInt(numOfOffersStr, 10);
 
     try {
-      await this.loadData(url);
-      const generatedData = this.generateData(count);
-      await this.saveToFile(generatedData, filepath);
-      console.log(`Successfully generated ${count} offers and saved to ${filepath}`);
+      await this.fetchInitialData(apiEndpoint);
+      const offers = this.generateData(numOfOffers);
+      await this.writeToFile(offers, outputPath);
+      console.log(`Successfully created ${numOfOffers} offers and saved to ${outputPath}`);
     } catch (error) {
-      console.error('Failed to generate data:', error instanceof Error ? error.message : error);
+      console.error('Error during data generation:', error instanceof Error ? error.message : error);
     }
   }
 
@@ -38,21 +38,21 @@ export class GenerateCommand implements Command {
     const generatedOffers: string[] = [];
 
     for (let i = 0; i < count; i++) {
-      const offer = generateOffer(this.initialData);
+      const offer = generateOffer(this.fetchedData);
       generatedOffers.push(offer);
     }
 
     return generatedOffers;
   }
 
-  private async saveToFile(data: string[], filepath: string): Promise<void> {
-    const writer = new TSVFileWriter(filepath);
+  private async writeToFile(offers: string[], outputPath: string): Promise<void> {
+    const fileWriter = new TSVFileWriter(outputPath);
 
-    for (const line of data) {
-      await writer.write(line);
+    for (const offer of offers) {
+      await fileWriter.write(offer);
     }
 
-    writer.close();
+    fileWriter.close();
   }
 }
 

@@ -1,4 +1,4 @@
-import { Offer, HouseType, Amenity, UserType } from '../../shared/types/index.js';
+import { Offer, HouseType, Amenity, UserType, CityName } from '../../shared/types/index.js';
 
 export function createOffer(offerData: string): Offer {
   const [
@@ -7,18 +7,19 @@ export function createOffer(offerData: string): Offer {
     publicationDate,
     previewImage,
     houseImages,
-    premium,
-    favorite,
+    isPremium,
+    isFavorite,
     rating,
     houseType,
     rooms,
-    guests,
+    maxGuests,
     rentCost,
     amenities,
     cityName,
     latitude,
     longitude,
     userName,
+    avatarUrl,
     email,
     userType] = offerData.replace('\n', '').split('\t');
 
@@ -28,24 +29,25 @@ export function createOffer(offerData: string): Offer {
     publicationDate: new Date(publicationDate),
     previewImage,
     houseImages: houseImages.split(','),
-    premium: premium === 'true',
-    favorite: favorite === 'true',
+    isPremium: isPremium.toLowerCase() === 'true',
+    isFavorite: isFavorite.toLowerCase() === 'true',
     rating: parseFloat(rating),
     houseType: houseType as HouseType,
     rooms: parseInt(rooms, 10),
-    guests: parseInt(guests, 10),
+    maxGuests: parseInt(maxGuests, 10),
     rentCost: parseInt(rentCost, 10),
     amenities: amenities
       .split(',')
       .map((amenity) => amenity as Amenity),
     city: {
-      cityName,
+      cityName: cityName as CityName,
       latitude: parseFloat(latitude),
       longitude: parseFloat(longitude),
     },
-    author: {
+    host: {
       userName,
       email,
+      avatarUrl,
       userType: userType as UserType,
     },
   };

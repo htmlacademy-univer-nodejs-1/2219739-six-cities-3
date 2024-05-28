@@ -1,17 +1,11 @@
 export const CreateCommentMessage = {
-  text: {
-    invalidFormat: 'text is required',
-    lengthField: 'min length is 5, max is 2024'
+  comment: {
+    invalidFormat: 'comment is required',
+    lengthField: 'Минимальная длина 5, максимальная 2024'
   },
   rating: {
-    minValue: 'Minimum rating is 1',
-    maxValue: 'Maximum rating is 5',
-    invalidFormat: 'Must be Number',
-  },
-  offerId: {
-    invalidFormat: 'offerId field must be a valid id'
-  },
-  userId: {
-    invalidFormat: 'userId field must be a valid id'
-  },
+    minValue: 'Минимальное значение 1',
+    maxValue: 'Максимальное значение 5',
+    invalidFormat: 'Должен быть тип Number',
+  }
 } as const;

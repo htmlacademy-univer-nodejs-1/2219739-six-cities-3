@@ -1,55 +1,52 @@
 export const CreateOfferValidationMessage = {
   title: {
-    minLength: 'Minimum title length must be 10',
-    maxLength: 'Maximum title length must be 100',
+    minLength: 'Минимальная длина 10',
+    maxLength: 'Максимальная длина 100',
   },
   description: {
-    minLength: 'Minimum description length must be 20',
-    maxLength: 'Maximum description length must be 1024',
+    minLength: 'Минимальная длина 20',
+    maxLength: 'Максимальная длина 1024',
   },
   publicationDate: {
-    invalidFormat: 'publicationDate must be a valid ISO date',
+    invalidFormat: 'Должен иметь тип valid ISO date',
   },
   city: {
-    invalid: 'city must be value from City Enum',
+    invalid: 'Должен иметь тип Object',
   },
   houseImages: {
-    invalidFormat: 'Images must be an array',
+    invalidFormat: 'Должен иметь тип Array',
   },
-  premium: {
-    invalidFormat: 'Must be Boolean',
+  isPremium: {
+    invalidFormat: 'Должен иметь тип Boolean',
   },
-  favorite: {
-    invalidFormat: 'Must be Boolean',
+  isFavorite: {
+    invalidFormat: 'Должен иметь тип Boolean',
   },
   rating: {
-    minValue: 'Minimum rentCost is 1',
-    maxValue: 'Maximum rentCost is 5',
-    invalidFormat: 'Must be Number',
+    minValue: 'Минимальное значение 1',
+    maxValue: 'Максимальное значение 5',
+    invalidFormat: 'Должен иметь тип Number',
   },
   houseType: {
     invalid: 'houseType must be value from HouseType Enum',
   },
   rooms: {
-    minValue: 'Minimum rooms is 1',
-    maxValue: 'Maximum rooms is 8',
-    invalidFormat: 'Must be Number',
+    minValue: 'Минимальное значение 1',
+    maxValue: 'Максимальное значение 8',
+    invalidFormat: 'Должен иметь тип Number',
   },
-  guests: {
-    minValue: 'Minimum guests is 1',
-    maxValue: 'Maximum guests is 10',
-    invalidFormat: 'Must be Number',
+  maxGuests: {
+    minValue: 'Минимальное значение 1',
+    maxValue: 'Максимальное значение 10',
+    invalidFormat: 'Должен иметь тип Number',
   },
   rentCost: {
-    minValue: 'Minimum rentCost is 100',
-    maxValue: 'Maximum rentCost is 100000',
-    invalidFormat: 'rentCost must be an Number',
+    minValue: 'Минимальное значение 100',
+    maxValue: 'Максимальное значение 100000',
+    invalidFormat: 'Должен иметь тип Number',
   },
   amenities: {
-    invalidFormat: 'Must be an array',
+    invalidFormat: 'Должен иметь тип array',
     invalidAmenityFormat: 'amenity must be value from Amenity Enum'
-  },
-  userId: {
-    invalidId: 'userId field must be a valid id',
   }
 } as const;

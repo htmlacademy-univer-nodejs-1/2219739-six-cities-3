@@ -1,4 +1,5 @@
 export * from './amenity.enum.js';
+export * from './city-name.enum.js';
 export * from './city.type.js';
 export * from './comment.type.js';
 export * from './house-type.enum.js';

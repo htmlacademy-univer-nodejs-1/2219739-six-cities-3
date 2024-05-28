@@ -1,24 +1,21 @@
-import {
-  BaseController,
-  HttpError,
-  HttpMethod,
-  UploadFileMiddleware,
-  ValidateDtoMiddleware,
-  ValidateObjectIdMiddleware
-} from '../../libs/rest/index.js';
-import {inject, injectable} from 'inversify';
-import {Component} from '../../types/index.js';
-import {Logger} from '../../libs/logger/index.js';
-import {Request, Response} from 'express';
-import {CreateUserRequest} from './create-user-request.type.js';
-import {UserService} from './user-service.interface.js';
-import {Config, ConfigSchema} from '../../libs/config/index.js';
-import {StatusCodes} from 'http-status-codes';
-import {fillDTO} from '../../helpers/index.js';
-import {UserRdo} from './rdo/user.rdo.js';
-import {LoginUserRequest} from './login-user-request.type.js';
-import {CreateUserDto} from './dto/create-user.dto.js';
-import {LoginUserDto} from './dto/login-user.dto.js';
+import { BaseController, HttpError, HttpMethod, UploadFileMiddleware, ValidateDtoMiddleware, ValidateObjectIdMiddleware } from '../../libs/rest/index.js';
+import { inject, injectable } from 'inversify';
+import { Component } from '../../types/index.js';
+import { Logger } from '../../libs/logger/index.js';
+import { Request, Response } from 'express';
+import { CreateUserRequest } from './create-user-request.type.js';
+import { UserService } from './user-service.interface.js';
+import { Config, ConfigSchema } from '../../libs/config/index.js';
+import { StatusCodes } from 'http-status-codes';
+import { fillDTO } from '../../helpers/index.js';
+import { UserRdo } from './rdo/user.rdo.js';
+import { LoginUserRequest } from './login-user-request.type.js';
+import { CreateUserDto } from './dto/create-user.dto.js';
+import { LoginUserDto } from './dto/login-user.dto.js';
+import { AuthService } from '../auth/auth-service.interface.js';
+import { RegisteredUserRdo } from './rdo/registered-user.rdo.js';
+import { LoggedUserRdo } from './rdo/logged-user.rdo.js';
+import { UploadUserAvatarRdo } from './rdo/upload-user-avatar.rdo.js';
 
 @injectable()
 export class UserController extends BaseController {
